@@ -13,6 +13,18 @@
 		E2CD04F12A45B0A8001FD4D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2CD04EF2A45B0A8001FD4D0 /* Main.storyboard */; };
 		E2CD04F32A45B0AB001FD4D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CD04F22A45B0AB001FD4D0 /* Assets.xcassets */; };
 		E2CD04F62A45B0AB001FD4D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2CD04F42A45B0AB001FD4D0 /* LaunchScreen.storyboard */; };
+		E2CD05032A463100001FD4D0 /* Repositories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2CD05022A463100001FD4D0 /* Repositories.storyboard */; };
+		E2CD05052A4631C3001FD4D0 /* RepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CD05042A4631C3001FD4D0 /* RepositoriesViewController.swift */; };
+		E2CD050A2A463205001FD4D0 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CD05092A463205001FD4D0 /* UIConstants.swift */; };
+		E2CD050C2A4633D4001FD4D0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CD050B2A4633D4001FD4D0 /* NetworkManager.swift */; };
+		E2CD050E2A4636E7001FD4D0 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CD050D2A4636E7001FD4D0 /* NetworkRequest.swift */; };
+		E2CD05102A463797001FD4D0 /* RepositoriesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CD050F2A463797001FD4D0 /* RepositoriesAPI.swift */; };
+		E2CD05122A463B3E001FD4D0 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CD05112A463B3E001FD4D0 /* CustomError.swift */; };
+		E2CD05142A463EA2001FD4D0 /* RepositoriesDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CD05132A463EA2001FD4D0 /* RepositoriesDataRepository.swift */; };
+		E2CD05162A463EDE001FD4D0 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CD05152A463EDE001FD4D0 /* Repository.swift */; };
+		E2CD05182A463F20001FD4D0 /* RepositoryOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CD05172A463F20001FD4D0 /* RepositoryOwner.swift */; };
+		E2CD051A2A4643DD001FD4D0 /* RepositoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CD05192A4643DD001FD4D0 /* RepositoriesViewModel.swift */; };
+		E2CD051E2A464A41001FD4D0 /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CD051D2A464A41001FD4D0 /* RepositoryTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +36,18 @@
 		E2CD04F22A45B0AB001FD4D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2CD04F52A45B0AB001FD4D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2CD04F72A45B0AB001FD4D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2CD05022A463100001FD4D0 /* Repositories.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Repositories.storyboard; sourceTree = "<group>"; };
+		E2CD05042A4631C3001FD4D0 /* RepositoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewController.swift; sourceTree = "<group>"; };
+		E2CD05092A463205001FD4D0 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
+		E2CD050B2A4633D4001FD4D0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E2CD050D2A4636E7001FD4D0 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		E2CD050F2A463797001FD4D0 /* RepositoriesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesAPI.swift; sourceTree = "<group>"; };
+		E2CD05112A463B3E001FD4D0 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		E2CD05132A463EA2001FD4D0 /* RepositoriesDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesDataRepository.swift; sourceTree = "<group>"; };
+		E2CD05152A463EDE001FD4D0 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		E2CD05172A463F20001FD4D0 /* RepositoryOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryOwner.swift; sourceTree = "<group>"; };
+		E2CD05192A4643DD001FD4D0 /* RepositoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewModel.swift; sourceTree = "<group>"; };
+		E2CD051D2A464A41001FD4D0 /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +80,8 @@
 		E2CD04E82A45B0A8001FD4D0 /* Robusta_TechnicalTask */ = {
 			isa = PBXGroup;
 			children = (
+				E2CD05072A4631EF001FD4D0 /* Base */,
+				E2CD04FD2A45B8B6001FD4D0 /* Modules */,
 				E2CD04E92A45B0A8001FD4D0 /* AppDelegate.swift */,
 				E2CD04EB2A45B0A8001FD4D0 /* SceneDelegate.swift */,
 				E2CD04ED2A45B0A8001FD4D0 /* ViewController.swift */,
@@ -65,6 +91,64 @@
 				E2CD04F72A45B0AB001FD4D0 /* Info.plist */,
 			);
 			path = Robusta_TechnicalTask;
+			sourceTree = "<group>";
+		};
+		E2CD04FD2A45B8B6001FD4D0 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				E2CD04FE2A45B8BE001FD4D0 /* DisplayRepositories */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		E2CD04FE2A45B8BE001FD4D0 /* DisplayRepositories */ = {
+			isa = PBXGroup;
+			children = (
+				E2CD05012A45B8E6001FD4D0 /* Data */,
+				E2CD05002A45B8E0001FD4D0 /* Models */,
+				E2CD04FF2A45B8D7001FD4D0 /* UI */,
+			);
+			path = DisplayRepositories;
+			sourceTree = "<group>";
+		};
+		E2CD04FF2A45B8D7001FD4D0 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E2CD05022A463100001FD4D0 /* Repositories.storyboard */,
+				E2CD05042A4631C3001FD4D0 /* RepositoriesViewController.swift */,
+				E2CD051D2A464A41001FD4D0 /* RepositoryTableViewCell.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		E2CD05002A45B8E0001FD4D0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E2CD05152A463EDE001FD4D0 /* Repository.swift */,
+				E2CD05172A463F20001FD4D0 /* RepositoryOwner.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E2CD05012A45B8E6001FD4D0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E2CD050F2A463797001FD4D0 /* RepositoriesAPI.swift */,
+				E2CD05132A463EA2001FD4D0 /* RepositoriesDataRepository.swift */,
+				E2CD05192A4643DD001FD4D0 /* RepositoriesViewModel.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		E2CD05072A4631EF001FD4D0 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E2CD05092A463205001FD4D0 /* UIConstants.swift */,
+				E2CD050B2A4633D4001FD4D0 /* NetworkManager.swift */,
+				E2CD050D2A4636E7001FD4D0 /* NetworkRequest.swift */,
+				E2CD05112A463B3E001FD4D0 /* CustomError.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +211,7 @@
 			files = (
 				E2CD04F62A45B0AB001FD4D0 /* LaunchScreen.storyboard in Resources */,
 				E2CD04F32A45B0AB001FD4D0 /* Assets.xcassets in Resources */,
+				E2CD05032A463100001FD4D0 /* Repositories.storyboard in Resources */,
 				E2CD04F12A45B0A8001FD4D0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,7 +223,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2CD050E2A4636E7001FD4D0 /* NetworkRequest.swift in Sources */,
+				E2CD050C2A4633D4001FD4D0 /* NetworkManager.swift in Sources */,
+				E2CD05102A463797001FD4D0 /* RepositoriesAPI.swift in Sources */,
+				E2CD05052A4631C3001FD4D0 /* RepositoriesViewController.swift in Sources */,
 				E2CD04EE2A45B0A8001FD4D0 /* ViewController.swift in Sources */,
+				E2CD05162A463EDE001FD4D0 /* Repository.swift in Sources */,
+				E2CD05122A463B3E001FD4D0 /* CustomError.swift in Sources */,
+				E2CD051A2A4643DD001FD4D0 /* RepositoriesViewModel.swift in Sources */,
+				E2CD05182A463F20001FD4D0 /* RepositoryOwner.swift in Sources */,
+				E2CD051E2A464A41001FD4D0 /* RepositoryTableViewCell.swift in Sources */,
+				E2CD05142A463EA2001FD4D0 /* RepositoriesDataRepository.swift in Sources */,
+				E2CD050A2A463205001FD4D0 /* UIConstants.swift in Sources */,
 				E2CD04EA2A45B0A8001FD4D0 /* AppDelegate.swift in Sources */,
 				E2CD04EC2A45B0A8001FD4D0 /* SceneDelegate.swift in Sources */,
 			);
@@ -292,9 +388,10 @@
 				INFOPLIST_FILE = Robusta_TechnicalTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Repositories;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -320,9 +417,10 @@
 				INFOPLIST_FILE = Robusta_TechnicalTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Repositories;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
