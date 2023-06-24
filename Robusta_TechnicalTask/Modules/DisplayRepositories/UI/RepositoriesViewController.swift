@@ -42,6 +42,7 @@ class RepositoriesViewController: UIViewController {
 
 extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(viewModel?.getPaginatedListCount() ?? 0)
         return viewModel?.getPaginatedListCount() ?? 0
     }
     
@@ -61,5 +62,12 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
         }
     }
     
-    
+}
+
+extension RepositoriesViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count != 1 {
+            viewModel?.updateSearchString(withString: searchText)
+        }
+    }
 }
