@@ -25,7 +25,6 @@ class RepositoriesViewController: UIViewController {
     }
     
     func bindData() {
-        
         viewModel?.$error
                    .receive(on: DispatchQueue.main)
                    .sink(receiveValue: { [weak self] error in
@@ -60,14 +59,15 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: UIConstants.Cells.RepositoryTableViewCell.rawValue, for: indexPath) as? RepositoryTableViewCell, let viewModel = viewModel, let repository = viewModel.getPaginatedRepository(at: indexPath.row) {
             cell.setup(withRepository: repository)
-            print("ID of repo = \(String(describing: repository.id)) at index = \(indexPath.row)")
-            if !viewModel.isOwnerImageDownloaded(atIndex: indexPath.row) {
-                
+            
+            //isOwnerImageDownloadInProgress used to avoid calling of downloadRepositoryImage twice if download started but not finished and repoistoriesTableView is reloaded due to paging
+            if !viewModel.isOwnerImageDownloaded(atIndex: indexPath.row) || !cell.isOwnerImageDownloadInProgress {
+                cell.isOwnerImageDownloadInProgress = true
                 viewModel.downloadRepositoryImage(atIndex: indexPath.row)
                     .receive(on: DispatchQueue.main)
-                    .sink(receiveCompletion: { completion in
-                        if case .failure(_) = completion {
-                            print("Show error")}
+                    .sink(receiveCompletion: { [weak self] completion in
+                        if case let .failure(error) = completion {
+                            self?.showErrorAlert(error: error)}
                     }, receiveValue: {  ownerImageResponse in
                             print("Image Result at \(indexPath.row)")
                         cell.reloadOwnerImage()
@@ -75,15 +75,15 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
                     .store(in: &cancellables)
             }
             
-            
-            if !viewModel.isRepoMoreInfoFetched(atIndex: indexPath.row) {
+            //isMoreInfoDownloadInProgress used to avoid calling of getRepositoryMoreInfo twice if download started but not finished and repoistoriesTableView is reloaded due to paging
+            if !viewModel.isRepoMoreInfoFetched(atIndex: indexPath.row) || !cell.isMoreInfoDownloadInProgress {
+                cell.isMoreInfoDownloadInProgress = true
                 viewModel.getRepositoryMoreInfo(atIndex: indexPath.row)
                     .receive(on: DispatchQueue.main)
-                    .sink(receiveCompletion: { completion in
-                        if case .failure(_) = completion {
-                            print("Show error")}
+                    .sink(receiveCompletion: { [weak self] completion in
+                        if case let .failure(error) = completion {
+                            self?.showErrorAlert(error: error) }
                     }, receiveValue: {  moreInfoResponse in
-                            print("More info Result at \(indexPath.row)")
                         cell.reloadCreationDate()
                     })
                     .store(in: &cancellables)

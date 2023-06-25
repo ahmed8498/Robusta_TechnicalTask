@@ -16,6 +16,8 @@ class RepositoryTableViewCell: UITableViewCell {
     @IBOutlet weak var creationDateLabel: UILabel!
     
     private var repository: Repository?
+    var isOwnerImageDownloadInProgress = false
+    var isMoreInfoDownloadInProgress = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
