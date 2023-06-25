@@ -14,26 +14,42 @@ final class Robusta_TechnicalTaskTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         viewModel = RepositoriesViewModel()
+        var repositoriesArray: [Repository] = []
+        for i in 0..<10 {
+            let tempRepo = Repository()
+            tempRepo.id = i
+            tempRepo.name = "Name \(i)"
+            tempRepo.owner = RepositoryOwner(id: i, name: "Owner \(i)", imageURL: "", image: nil)
+            repositoriesArray.append(tempRepo)
+        }
         
+        viewModel.filteredListOfRepositories = repositoriesArray
+        viewModel.paginatedListOfRepositories = repositoriesArray.dropLast(2)
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        viewModel = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
+
+    
+    func testShouldLoadMoreData() {
+        XCTAssertTrue(viewModel.shouldLoadMoreData())
     }
+    
+    func testIsOwnerImageDownloaded() {
+        XCTAssertFalse(viewModel.isOwnerImageDownloaded(atIndex: 0))
+        viewModel.paginatedListOfRepositories?[0].owner?.image = UIImage.add
+        XCTAssertTrue(viewModel.isOwnerImageDownloaded(atIndex: 0))
+    }
+    
+    func testIsMoreInfoDownloaded() {
+        XCTAssertFalse(viewModel.isRepoMoreInfoFetched(atIndex: 0))
+        viewModel.paginatedListOfRepositories?[0].moreInfo = RepositoryMoreInfo()
+        XCTAssertTrue(viewModel.isRepoMoreInfoFetched(atIndex: 0))
+    }
+    
+    
 
 }
