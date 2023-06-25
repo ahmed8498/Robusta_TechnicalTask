@@ -18,12 +18,24 @@ class RepositoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.placeholder = "Search for repository..."
         viewModel = RepositoriesViewModel()
         bindData()
         loadRepositories()
     }
     
     func bindData() {
+        
+        viewModel?.$error
+                   .receive(on: DispatchQueue.main)
+                   .sink(receiveValue: { [weak self] error in
+                       if error != nil {
+                           self?.showErrorAlert(error: error!)
+                       }
+                   })
+                   .store(in: &cancellables)
+        
+        
         viewModel?.$paginatedListOfRepositories
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] listOfRepositoriesResponse in
@@ -42,13 +54,41 @@ class RepositoriesViewController: UIViewController {
 
 extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(viewModel?.getPaginatedListCount() ?? 0)
         return viewModel?.getPaginatedListCount() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: UIConstants.Cells.RepositoryTableViewCell.rawValue, for: indexPath) as? RepositoryTableViewCell, let repository = viewModel?.getPaginatedRepository(at: indexPath.row) {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: UIConstants.Cells.RepositoryTableViewCell.rawValue, for: indexPath) as? RepositoryTableViewCell, let viewModel = viewModel, let repository = viewModel.getPaginatedRepository(at: indexPath.row) {
             cell.setup(withRepository: repository)
+            print("ID of repo = \(String(describing: repository.id)) at index = \(indexPath.row)")
+            if !viewModel.isOwnerImageDownloaded(atIndex: indexPath.row) {
+                
+                viewModel.downloadRepositoryImage(atIndex: indexPath.row)
+                    .receive(on: DispatchQueue.main)
+                    .sink(receiveCompletion: { completion in
+                        if case .failure(_) = completion {
+                            print("Show error")}
+                    }, receiveValue: {  ownerImageResponse in
+                            print("Image Result at \(indexPath.row)")
+                        cell.reloadOwnerImage()
+                    })
+                    .store(in: &cancellables)
+            }
+            
+            
+            if !viewModel.isRepoMoreInfoFetched(atIndex: indexPath.row) {
+                viewModel.getRepositoryMoreInfo(atIndex: indexPath.row)
+                    .receive(on: DispatchQueue.main)
+                    .sink(receiveCompletion: { completion in
+                        if case .failure(_) = completion {
+                            print("Show error")}
+                    }, receiveValue: {  moreInfoResponse in
+                            print("More info Result at \(indexPath.row)")
+                        cell.reloadCreationDate()
+                    })
+                    .store(in: &cancellables)
+            }
+            
             return cell
         } else {
             return UITableViewCell()
@@ -59,6 +99,13 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
         guard let viewModel = viewModel else {return}
         if viewModel.shouldLoadMoreData(), indexPath.row == viewModel.getPaginatedListCount() - 1 {
             viewModel.getNextRepositories()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel?.setSelectedRepositoryIndex(index: indexPath.row)
+        if let repositoryDetailsVC = RepositoryDetailsViewController.viewController(viewModel: viewModel) {
+            navigationController?.pushViewController(repositoryDetailsVC, animated: true)
         }
     }
     

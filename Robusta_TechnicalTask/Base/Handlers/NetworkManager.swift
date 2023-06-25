@@ -5,7 +5,7 @@
 //  Created by Ahmed Mohamed on 23/06/2023.
 //
 
-import Foundation
+import UIKit
 import Combine
 
 class NetworkManager {
@@ -42,6 +42,28 @@ class NetworkManager {
                 return data
             }
             .decode(type: responseModel.self, decoder: JSONDecoder())
+            .mapError { error  in
+                return error as? CustomError ?? .generalError
+            }
+            .eraseToAnyPublisher()
+        
+    }
+    
+    
+    class func downloadImage(fromUrl url: URL) -> AnyPublisher<UIImage, CustomError> {
+        
+        return URLSession.shared
+            .dataTaskPublisher(for: url)
+            .tryMap { (data, response) in
+                guard let response = response as? HTTPURLResponse else {throw CustomError.generalError}
+                guard 200...300 ~= response.statusCode else {throw CustomError.generalError}
+                
+                if let image = UIImage(data: data) {
+                    return image
+                } else {
+                    throw CustomError.generalError
+                }
+            }
             .mapError { error  in
                 return error as? CustomError ?? .generalError
             }

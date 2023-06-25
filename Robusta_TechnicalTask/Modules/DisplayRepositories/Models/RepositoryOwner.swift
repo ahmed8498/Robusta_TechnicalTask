@@ -5,12 +5,13 @@
 //  Created by Ahmed Mohamed on 23/06/2023.
 //
 
-import Foundation
+import UIKit
 
 struct RepositoryOwner: Codable {
     var id: Int?
     var name: String?
     var imageURL: String?
+    var image: UIImage?
     
     enum CodingKeys: String, CodingKey {
         case id

@@ -9,9 +9,14 @@ import Foundation
 
 
 class UIConstants {
+        
+    enum Storyboards: String {
+        case Repositories = "Repositories"
+    }
     
     enum ViewControllers: String {
         case RepositoriesViewController = "RepositoriesViewController"
+        case RepositoryDetailsViewController = "RepositoryDetailsViewController"
     }
     
     enum Cells: String {

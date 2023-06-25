@@ -9,13 +9,14 @@ import Foundation
 
 enum RepositoriesAPI {
     case getRepositories
+    case getRepositoryMoreInfo(repoFullName: String)
 }
 
 
 extension RepositoriesAPI: NetworkRequest {
     var baseURL: URL {
         switch self {
-        case .getRepositories:
+        case .getRepositories, .getRepositoryMoreInfo:
             let baseURLString = "https://api.github.com/"
             if let url = URL(string: baseURLString) {
                 return url
@@ -30,12 +31,14 @@ extension RepositoriesAPI: NetworkRequest {
         switch self {
         case .getRepositories:
             return "repositories"
+        case .getRepositoryMoreInfo(let repoFullName):
+            return "repos/\(repoFullName)"
         }
     }
     
     var method: NetworkMethod {
         switch self {
-        case .getRepositories:
+        case .getRepositories, .getRepositoryMoreInfo:
             return .get
         }
     }
