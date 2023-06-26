@@ -27,7 +27,7 @@ class RepositoriesViewController: UIViewController {
     }
     
     func bindData() {
-        // Apart from other errors, an error may show if API limit is reached due to mutliple requests in very short span of time(May occur if very quick scrolling is done)
+        // Apart from other errors, an error may show if API limit is reached due to mutliple requests in very short span of time(May occur if very quick scrolling is done). This is a limitation of the API currently.
         viewModel?.$error
                    .receive(on: DispatchQueue.main)
                    .sink(receiveValue: { [weak self] error in
