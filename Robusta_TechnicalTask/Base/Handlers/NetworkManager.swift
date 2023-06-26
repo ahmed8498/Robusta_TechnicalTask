@@ -10,6 +10,9 @@ import Combine
 
 class NetworkManager {
     
+//    Although the endpoint used does not require headers or parameters, the network manager class was created for generic call of other APIs if needed. Without such a handler, simply providing the URL to URLSession would do the job but the current Manager created provides a more general solution.
+    
+    
     class func makeNetworkRequest<T: Decodable>(request: NetworkRequest, responseModel: T.Type) -> AnyPublisher<T, CustomError> {
         
         var urlComponents = URLComponents(url: request.baseURL.appendingPathComponent(request.path, isDirectory: false), resolvingAgainstBaseURL: false)
