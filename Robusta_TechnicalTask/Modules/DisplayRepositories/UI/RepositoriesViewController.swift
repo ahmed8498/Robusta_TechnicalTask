@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import SkeletonView
 
 class RepositoriesViewController: UIViewController {
 
@@ -21,6 +22,7 @@ class RepositoriesViewController: UIViewController {
         searchBar.placeholder = "Search for repository..."
         viewModel = RepositoriesViewModel()
         bindData()
+        view.showAnimatedGradientSkeleton()
         loadRepositories()
     }
     
@@ -39,6 +41,7 @@ class RepositoriesViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] listOfRepositoriesResponse in
                 if listOfRepositoriesResponse != nil {
+                    self?.view.hideSkeleton()
                     self?.repositoriesTableView.reloadData()
                 }
             })
@@ -116,5 +119,11 @@ extension RepositoriesViewController: UISearchBarDelegate {
         if searchText.count != 1 {
             viewModel?.updateSearchString(withString: searchText)
         }
+    }
+}
+
+extension RepositoriesViewController: SkeletonTableViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return UIConstants.Cells.RepositoryTableViewCell.rawValue
     }
 }
