@@ -72,7 +72,6 @@ extension RepositoriesViewController: UITableViewDelegate, UITableViewDataSource
                         if case let .failure(error) = completion {
                             self?.showErrorAlert(error: error)}
                     }, receiveValue: {  ownerImageResponse in
-                            print("Image Result at \(indexPath.row)")
                         cell.reloadOwnerImage()
                     })
                     .store(in: &cancellables)
